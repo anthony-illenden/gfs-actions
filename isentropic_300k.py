@@ -80,7 +80,7 @@ for i in range(0, 29, 2):
     iteration_start = time.time()
     ds = ds_latlon.isel(**{matching_dim: i})
 
-    isentlevs = [295] * units.kelvin
+    isentlevs = [300] * units.kelvin
 
     # Extract the variables
     T = ds['Temperature_isobaric'] * units.kelvin
@@ -136,9 +136,9 @@ for i in range(0, 29, 2):
 
     hour_difference = (ds_latlon[matching_dim][i] - init_time) / np.timedelta64(1, 'h')
 
-    plt.title(f"{ds_latlon[matching_dim][0].dt.strftime('%H00 UTC').item()} GFS 295K Isentropic Surface Pressure, Relative Humidity, and Winds | {ds_latlon[matching_dim][i].dt.strftime('%Y-%m-%d %H00 UTC').item()} | FH: {hour_difference:.0f}", fontsize=12)
+    plt.title(f"{ds_latlon[matching_dim][0].dt.strftime('%H00 UTC').item()} GFS 300K Isentropic Surface Pressure, Relative Humidity, and Winds | {ds_latlon[matching_dim][i].dt.strftime('%Y-%m-%d %H00 UTC').item()} | FH: {hour_difference:.0f}", fontsize=12)
     plt.tight_layout()
-    plt.savefig(f'plots/isentropic_295k/{hour_difference:.0f}.png', dpi=450)
+    plt.savefig(f'plots/isentropic_300k/{hour_difference:.0f}.png', dpi=450)
     iteration_end = time.time()
     print(f'Iteration {i} Processing Time:', round((iteration_end - iteration_start), 2), 'seconds.')
 
