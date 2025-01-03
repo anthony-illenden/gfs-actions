@@ -1,0 +1,43 @@
+name: Update GFS Isentropic 295k Plots
+
+on:
+  push:
+  schedule: 
+    - cron: '0 */2 * * *'
+
+jobs:
+  update_gfs_isentropic_295k_plots:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9.18'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install matplotlib metpy==1.6.2 siphon==0.9 cartopy protobuf==3.20.3 numpy==1.26.4 netCDF4==1.5.7
+
+      - name: Delete old plots if they exist
+        run: |
+          find plots/isentropic_295k/ -name '*.png' -exec rm {} +
+
+      - name: Run isentropic_295k.py script
+        run: python isentropic_295k.py 
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "tonyillenden@gmail.com"
+          git config --local user.name "anthony-illenden"
+          git add plots/isentropic_295k/*.png
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update GFS Isentropic 295k Plots"
+            git push origin main
+          fi
