@@ -122,7 +122,7 @@ for i in range(0, 29, 2):
         plt.clabel(cs, fontsize=10, inline=1, inline_spacing=7, fmt='%i', rightside_up=True, use_clabeltext=True)
     except IndexError:
         print("No contours to label for isobars.")
-    cf = ax.contourf(isent_data['lon'], isent_data['lat'], smoothed_rh, levels=levels, cmap='YlGnBu', extend='max', transform=ccrs.PlateCarree())
+    cf = ax.contourf(isent_data['lon'], isent_data['lat'], smoothed_rh, levels=levels, cmap='gist_earth_r', extend='max', transform=ccrs.PlateCarree())
 
     #Add a colorbar
     plt.colorbar(cf, ax=ax, orientation='horizontal', label='Relative Humidity', pad=0.05, aspect=50, ticks=np.arange(0, 101, 10))
