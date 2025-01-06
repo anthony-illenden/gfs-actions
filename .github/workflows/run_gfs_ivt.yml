@@ -40,3 +40,4 @@ jobs:
           else
             git commit -m "Update GFS IVT Plots"
             git push origin main
+          fi
