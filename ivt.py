@@ -155,7 +155,7 @@ def plot_ivt(ds_latlon, matching_dim, init_time):
         plt.title(f"{ds_latlon[matching_dim][0].dt.strftime('%H00 UTC').item()} GFS IVT and MSLP | {ds_latlon[matching_dim][i].dt.strftime('%Y-%m-%d %H00 UTC').item()} | FH: {hour_difference:.0f}", fontsize=12)
         plt.tight_layout()
         plt.show()
-        plt.savefig(f'plots/ivt/{hour_difference:.0f}.png', dpi='450', bbox_inches='tight')
+        plt.savefig(f'plots/ivt/{hour_difference:.0f}.png', dpi=450, bbox_inches='tight')
         
         iteration_end = time.time()
         print(f"Time taken for iteration {i}: {iteration_end - iteration_start:.2f} seconds")
